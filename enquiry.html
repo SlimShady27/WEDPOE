@@ -1,31 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <title>Enegetic Appliances</title>
+    
 </head>
-<body style="font-family: Arial, sans-serif;
-      margin: 20px;">
+<body>
+    <link rel="stylesheet" href="style.css">
+<header>
+    <nav>
+        <a href="ST10442302P1.html" class="logo">Energetic Appliances</a>
+        <div class="nav-links">
+            <a href="ST10442302P1.html" class="active">Home</a>
+            <a href="about.html"> About</a>
+            <a href="product.html">Products</a>
+            <a href="enquiry.html">Enquiry</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+    
+    <hr>
+    </header>
+        
    
-    <h1 style="margin-bottom: 5px;">Energetic Appliances</h1>
     <hr>
     <h2 style="margin-top: 0;"> Enquiry</h2>
-    <p>
+    
         <h3> Service hours</h3>
-        Online Mon-Sat: 09:00 - 18:00
-        Physical Store Mon-Sat: 09:00- 17:30
+    <p>    Online Mon-Sat: 09:00 - 18:00 <br>
+        Physical Store Mon-Sat: 09:00- 17:30</p>
         <h4> Device repair Appointment</h4>
-        All devices that come for repairs will handled by a professional technician that will give the specific return date of your device  
-        <h5> Repairs</h5>
-            For repairs go to contact tab and call our office <a href="contact.html">Contact</a>
-        <h6> Returns and Refunds</h6>
-            For Returns and Refunds contact our office <a href="contact.html">Contact</a>    
-    </p>
-    <hr>
-     <nav>
-        <a href="ST10442302P1.html">Home</a> |
-        <a href="about.html">About</a> |
-        <a href="product.html">Product</a> |
-        <a href="contact.html">Contact</a>
-    </nav>
+      <p>  All devices that come for repairs will handled by a professional technician that will give the specific return date of your device  </p>
+        <h5> Returns and Refunds</h5>
+           <p> For Returns and Refunds contact our office </p> 
+           <h6> Repairs</h6>
+       <p> For repairs go to contact tab and call our office </p>   
+    <form id="enquiryForm" onsubmit="calculateCost(event)">
+  <label for="fullName">Full Name:</label>
+  <input type="text" id="fullName" name="fullName" required minlength="3">
+<br>
+  <label for="email">Email Address:</label>
+  <input type="email" id="email" name="email" required>
+<br>
+  <label for="service">Select Service:</label>
+  <select id="service" name="service" required>
+    <option value="">-- Select Option --</option>
+    <option value="R1000">Laptop Screen Repair (R1000)</option>
+    <option value="R800">Battery Replacement (R800)</option>
+    <option value="R500">General Diagnostics (R500)</option>
+  </select>
+<br>
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+<br>
+  <button type="submit">Calculate Estimated Cost</button>
+  <div id="enquiryResult" class="result-message"></div>
+</form>
+
+<script>
+function calculateCost(event) {
+  event.preventDefault();
+  const servicePrice = parseFloat(document.getElementById('service').value);
+  const quantity = parseInt(document.getElementById('quantity').value);
+  
+  if (servicePrice && quantity > 0) {
+    const total = servicePrice * quantity;
+    document.getElementById('enquiryResult').innerText = 
+      `Estimated Total Cost: R${total.toFixed(2)}. We will contact you to confirm availability.`;
+  }
+}
+</script>
+    
 </body>
 </html>

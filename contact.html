@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <title>Enegetic Appliances</title>
 </head>
 <body>
-   
-    <h1 style="margin-bottom: 5px;">Energetic Appliances</h1>
+    <link rel="stylesheet" href="style.css">
+     <header>
+    <nav>
+        <a href="ST10442302P1.html" class="logo">Energetic Appliances</a>
+        <div class="nav-links">
+            <a href="ST10442302P1.html" class="active">Home</a>
+            <a href="about.html"> About</a>
+            <a href="product.html">Products</a>
+            <a href="enquiry.html">Enquiry</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+    
+    <hr>
+    </header>
     <hr>
     <h2 style="margin-top: 0;"> How to contact Energetic Appliances</h2>
     <p>For more information about our product and services you can contact on the following contacts below:
@@ -14,12 +29,44 @@
             <li> Tshepo Taumang: 078 234 2340</li>
         </ul>
     </p>
-    <hr>
-     <nav>
-        <a href="ST10442302P1.html">Home</a> |
-        <a href="about.html">About</a> |
-        <a href="product.html">Product</a> |
-        <a href="enquiry.html">Enquiry</a>
-    </nav>
+    
+  <form id="contactForm" action="mailto:customerservices@energeticappliances.co.za" method="post" enctype="text/plain" onsubmit="validateContactForm(event)">
+  <label for="contactName">Name:</label>
+  <input type="text" id="contactName" name="Name" required minlength="2">
+<br>
+  <label for="contactEmail">Email:</label>
+  <input type="email" id="contactEmail" name="Email" required>
+<br>
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="Phone" pattern="[0-9]{10}" placeholder="0123456789" required>
+<br>
+  <label for="subject">Subject:</label>
+  <select id="subject" name="Subject" required>
+    <option value="General Inquiry">General Inquiry</option>
+    <option value="Technical Support">Technical Support</option>
+    <option value="Feedback">Feedback</option>
+  </select>
+<br>
+  <label for="message">Message:</label>
+  <textarea id="message" name="Message" rows="5" required minlength="10"></textarea>
+<br>
+  <button type="submit">Send Email</button>
+  <p id="contactError" style="color: rgb(15, 11, 221); display: none;"></p>
+</form>
+
+<script>
+function validateContactForm(event) {
+  const phone = document.getElementById('phone').value;
+  const phonePattern = /^[0-9]{10}$/;
+  
+  if (!phonePattern.test(phone)) {
+    event.preventDefault();
+    const errorElement = document.getElementById('contactError');
+    errorElement.innerText = "Please enter a valid 10-digit phone number.";
+    errorElement.style.display = "block";
+  }
+}
+</script>
+
 </body>
 </html>
