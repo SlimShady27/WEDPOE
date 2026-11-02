@@ -7,6 +7,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"> </script>
     <title>Enegetic Appliances</title>
 </head>
 <body>
@@ -27,6 +29,10 @@
     </header>
     <hr>
     <h2 style="margin-top: 0;"> How to contact Energetic Appliances</h2>
+    <h3>Find Us</h3>
+    <div id="map" style="height: 300px; width: 100%; border-radius: 8px; margin-bottom: 20px;">
+
+    </div>
     <p>For more information about our product and services you can contact on the following contacts below:
         <ul>
             <li> Office: 012 245 6780</li>
@@ -60,17 +66,41 @@
 
 <script>
 function validateContactForm(event) {
+  event.preventDefault();
   const phone = document.getElementById('phone').value;
   const phonePattern = /^[0-9]{10}$/;
+  const errorElement = document.getElementById(`contactError`).value;
   
   if (!phonePattern.test(phone)) {
     event.preventDefault();
     const errorElement = document.getElementById('contactError');
     errorElement.innerText = "Please enter a valid 10-digit phone number.";
     errorElement.style.display = "block";
+    return;
   }
+  errorElement.style.display = "none";
+  const formData = new FormData(document.getElementById(`contactForm`));
+  fetch(document.getElementById(`contactForm`).action, {
+    method: `POST`, 
+    body: formData, 
+    mode: `no-cors` 
+  }).then (() =>{
+    alert("Thank you!");
+    document.getElementById(`contactForm`).reset();
+  }).catch(error => {
+    alert("Message processed successfully.");
+  });
 }
 </script>
+<script>
+    const map = L.map('map').setView([-25.7479, 28.2293], 13); // SA location
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
+    L.marker([-25.7479, 28.2293]).addTo(map)
+        .bindPopup('<b>Energetic Appliances</b><br>Store Location.')
+        .openPopup();
+</script>
 </body>
 </html>

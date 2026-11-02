@@ -64,20 +64,20 @@
 
 <script>
 function calculateCost(event) {
-  event.preventDefault();
-  const servicePrice = parseFloat(document.getElementById('service').value);
-  const quantity = parseInt(document.getElementById('quantity').value);
-  
-  if (servicePrice && quantity > 0) {
-    const total = servicePrice * quantity;
-    const message = `Estimated Total Cost: R$ {total.toFixed(2)}. Thank you, we will contact you!`
-    document.getElementById('enquiryResult').innerText = message;
-    alert("Enquiry Submitted Successfully!\n\n" + message);
-      `Estimated Total Cost: R${total.toFixed(2)}. We will contact you to confirm availability.`;
-  }
-  else {
-    alert("Please select a valid service and quantity.");
-  }
+    event.preventDefault(); 
+    
+    const servicePrice = parseFloat(document.getElementById('service').value);
+    const quantity = parseInt(document.getElementById('quantity').value);
+
+    if (servicePrice && quantity > 0) {
+        const total = servicePrice * quantity;
+        const message = `Estimated Total Cost: R${total.toFixed(2)}. We will contact you to confirm availability.`;
+        document.getElementById('enquiryResult').innerText = message;
+        
+        alert("Enquiry Submitted Successfully!\n\n" + message);
+    } else {
+        alert("Please select a valid service and quantity.");
+    }
 }
 </script>
     
