@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; style-src 'self' 'unsafe-inline';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <title>Enegetic Appliances</title>
     
 </head>
@@ -66,8 +70,13 @@ function calculateCost(event) {
   
   if (servicePrice && quantity > 0) {
     const total = servicePrice * quantity;
-    document.getElementById('enquiryResult').innerText = 
+    const message = `Estimated Total Cost: R$ {total.toFixed(2)}. Thank you, we will contact you!`
+    document.getElementById('enquiryResult').innerText = message;
+    alert("Enquiry Submitted Successfully!\n\n" + message);
       `Estimated Total Cost: R${total.toFixed(2)}. We will contact you to confirm availability.`;
+  }
+  else {
+    alert("Please select a valid service and quantity.");
   }
 }
 </script>

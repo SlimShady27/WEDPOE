@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; style-src 'self' 'unsafe-inline';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <title>Enegetic Appliances</title>
 </head>
 <body>
@@ -48,7 +52,7 @@
   </select>
 <br>
   <label for="message">Message:</label>
-  <textarea id="message" name="Message" rows="5" required minlength="10"></textarea>
+  <textarea id="message" name="Message" rows="2" required minlength="10" style="vertical-align: top;"></textarea>
 <br>
   <button type="submit">Send Email</button>
   <p id="contactError" style="color: rgb(15, 11, 221); display: none;"></p>
